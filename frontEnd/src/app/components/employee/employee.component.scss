@@ -1,0 +1,35 @@
+$width:20%;
+section{
+    & > article{
+        display: grid;
+        grid-template-columns: repeat(5, 1fr );
+        aside{
+            display: grid;
+            grid-column: span 2;
+        }
+        main{
+            display: grid;
+            grid-column: span 3;
+            article{
+                ul{
+                    list-style: none;
+                    padding: 0;
+                    display: flex;
+                    justify-content: space-between;
+                    li{
+                        width: $width;
+                        display: inline;
+                        border: 2px solid black;
+                    }
+                }
+                div{
+                    display: flex;
+                    justify-content: space-between;
+                    & > * {
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+}

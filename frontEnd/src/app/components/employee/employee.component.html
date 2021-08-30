@@ -1,22 +1,38 @@
 <section>
     <article>
         <aside>
-            <form action="">
-                <h1>Formulario</h1>
+            <form #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm)">
+                <input type="text" name="name" placeholder="Nombre" [(ngModel)]="employeeService.newEmployee.name">
+                <input type="text" name="office" placeholder="Área de trabajo" [(ngModel)]="employeeService.newEmployee.office">
+                <input type="text" name="position" placeholder="Posición" [(ngModel)]="employeeService.newEmployee.position">
+                <input type="text" name="salary" placeholder="Salario" [(ngModel)]="employeeService.newEmployee.salary">
+                <input type="hidden" name="_id" [(ngModel)]="employeeService.newEmployee._id">
+                <button (click)="resetForm(employeeForm)">Limpiar</button>
+                <button>Añadir</button>
             </form>
         </aside>
-        <section>
+        <main>
             <article>
                 <ul>
                     <li>Name</li>
                     <li>Position</li>
                     <li>Office</li>
                     <li>Salary</li>
+                    <li>Actions</li>
                 </ul>
             </article>
             <article>
-                
+                <div *ngFor="let employee of employeeService.employees">
+                    <p>{{employee.name.split(" ")[0]}}</p>
+                    <p>{{employee.office}}</p>
+                    <p>{{employee.position}}</p>
+                    <p>{{employee.salary}}</p>
+                    <div>
+                        <button (click)="editEmployee(employee)">Editar</button>
+                        <button (click)="deleteEmployee(employee)">Eliminar</button>
+                    </div>
+                </div>
             </article>
-        </section>
+        </main>
     </article>
 </section>

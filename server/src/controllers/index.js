@@ -16,11 +16,13 @@ index.createEmployee = async (req, res) => {
     name = name.trim()
     office = office.trim()
     position = position.trim()
-    salary = salary.trim()
-    if(salary.includes(",")){
-        salary = salary.replace(",", "")
+    if(typeof salary === "string"){
+        salary = salary.trim()
+        if(salary.includes(",")){
+            salary = salary.replace(",", "")
+        }
+        salary = parseInt(salary)
     }
-    salary = parseInt(salary)
     const newEmployee = new Employee({
         name,
         office,
@@ -37,9 +39,12 @@ index.updateEmployee = async (req, res) => {
     name = name.trim()
     office = office.trim()
     position = position.trim()
-    salary = salary.trim()
-    if(salary.includes(",")){
-        salary = salary.replace(",", "")
+    if(typeof salary === "string"){
+        salary = salary.trim()
+        if(salary.includes(",")){
+            salary = salary.replace(",", "")
+        }
+        salary = parseInt(salary)
     }
     salary = parseInt(salary)
     await Employee.updateOne({_id: id}, {
